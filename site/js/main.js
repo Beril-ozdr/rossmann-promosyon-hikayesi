@@ -173,7 +173,7 @@
     var dots = mk(g6, 'g', { 'aria-hidden': 'true' });
     sw.pts.forEach(function (p) { mk(dots, 'circle', { 'class': 'pt', cx: p.x.toFixed(1), cy: (cy + p.y).toFixed(1), r: sw.r }); });
     mk(g6, 'line', { x1: X6(med), x2: X6(med), y1: m.t + 40, y2: h - m.b, stroke: '#ff4a5c', 'stroke-width': 2.6, 'stroke-dasharray': '8 6' });
-    txt(g6, 'etiketx', X6(med), m.t + 14, 'ortanca: %' + fmt(med, 1), 'middle', { fill: '#ff4a5c' });
+    txt(g6, 'etiketx', X6(med), m.t + 14, (narrow ? 'ortadaki mağaza: %' : 'ortanca (ortadaki mağaza): %') + fmt(med, 1), 'middle', { fill: '#ff4a5c' });
     txt(g6, 'soluk-yazi', X6(med), m.t + 34, 'yarısı %' + fmt(q1, 0) + '–%' + fmt(q3, 0), 'middle');
     var yl = cy - 36;
     txt(g6, 'soluk-yazi', Math.max(X6(mn) - 4, 4), yl, 'en düşük', 'start');
@@ -254,7 +254,7 @@
       case 5: return ['Etkinin en düşük olduğu gün ' + cum.gun.toLowerCase() + ' (%' + fmt(cum.Artis_yuzde, 0) + '); pazartesiyle arada yaklaşık ' + fmt(pzt.Artis_yuzde - cum.Artis_yuzde, 0) + ' puan fark var',
         'Aynı çubuk grafik; cuma yüzde ' + fmt(cum.Artis_yuzde, 1) + ', pazartesi yüzde ' + fmt(pzt.Artis_yuzde, 1) + '. Aradaki fark yaklaşık ' + fmt(pzt.Artis_yuzde - cum.Artis_yuzde, 0) + ' yüzde puanı.'];
       case 6: return [fmt(G.magaza_sayisi) + ' mağazanın ' + (G.dusen_magaza_sayisi === 0 ? 'hiçbirinde satış düşmedi' : 'bir kısmında satış düştü') + '; artış %' + fmt(st.mn, 0) + ' ile %' + fmt(st.mx, 0) + ' arasında değişiyor',
-        'Nokta grafiği: ' + fmt(st.n) + ' mağazanın her biri bir nokta. Artış en düşük yüzde ' + fmt(st.mn, 1) + ', en yüksek yüzde ' + fmt(st.mx, 1) + ', ortanca yüzde ' + fmt(st.med, 1) + '. Mağazaların yarısı yüzde ' + fmt(st.q1, 1) + ' ile ' + fmt(st.q3, 1) + ' arasında.'];
+        'Nokta grafiği: ' + fmt(st.n) + ' mağazanın her biri bir nokta. Artış en düşük yüzde ' + fmt(st.mn, 1) + ', en yüksek yüzde ' + fmt(st.mx, 1) + ', ortanca (mağazaları sıraladığımızda ortadaki mağaza) yüzde ' + fmt(st.med, 1) + '. Mağazaların yarısı yüzde ' + fmt(st.q1, 1) + ' ile ' + fmt(st.q3, 1) + ' arasında.'];
       case 7: return ['a, c ve d tiplerinde artış yaklaşık %' + fmt(dmin, 0) + '–%' + fmt(dmax, 0) + '; b tipinde yalnızca yaklaşık %' + fmt(b.Artis_yuzde, 0) + ' (' + b.Magaza_sayisi + ' mağaza)',
         'Çubuk grafik: ' + types.map(function (t) { return t.magaza_tipi + ' tipi (' + t.Magaza_sayisi + ' mağaza) yüzde ' + fmt(t.Artis_yuzde, 1); }).join(', ') + '.'];
     }
